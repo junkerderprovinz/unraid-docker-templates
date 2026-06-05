@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>StandardNotes-Server</Name>
+  <Repository>standardnotes/server:latest</Repository>
+  <Registry>https://hub.docker.com/r/standardnotes/server</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/198819-support-junkerderprovinz-standard-notes-server/</Support>
+  <Project>https://standardnotes.com</Project>
+  <Overview>
+    Standard Notes self-hosted backend for Unraid (community template).&#xD;
+    End-to-end encrypted notes, sync, files, auth and API gateway in the&#xD;
+    official standardnotes/server image.&#xD;
+    &#xD;
+    Required side containers, in this order:&#xD;
+      1. MariaDB. Create an empty database "standard_notes_db" and a&#xD;
+         user "std_notes_user" with all privileges on it.&#xD;
+      2. Redis (default port 6379, no auth).&#xD;
+      3. StandardNotes-LocalStack companion (SNS and SQS). The server&#xD;
+         resolves the hostname "localstack" at port 4566. Without it,&#xD;
+         files-worker.log fills with "getaddrinfo ENOTFOUND localstack"&#xD;
+         and notes can duplicate.&#xD;
+      4. This template.&#xD;
+    &#xD;
+    Generate three 32-byte hex secrets before starting:&#xD;
+      openssl rand -hex 32  (run three times)&#xD;
+    &#xD;
+    Ports:&#xD;
+      3000/tcp - API gateway (HTTP, put behind a reverse proxy).&#xD;
+      3125/tcp host - 3104 container - files server (per upstream&#xD;
+                     docker-compose). Reverse-proxy traffic must&#xD;
+                     forward to host port 3125.&#xD;
+    &#xD;
+    URL and cookie shapes:&#xD;
+      COOKIE_DOMAIN: bare domain only, no https://, no trailing slash.&#xD;
+        Example: standardnotesserver.mydomain.tld&#xD;
+      PUBLIC_FILES_SERVER_URL: full HTTPS URL, includes https://.&#xD;
+        Example: https://files.standardnotesserver.mydomain.tld&#xD;
+      Custom Sync Server (entered in the Standard Notes client):&#xD;
+        full HTTPS URL. Example: https://standardnotesserver.mydomain.tld&#xD;
+    &#xD;
+    Notes:&#xD;
+      Unofficial community template. Always reach the server over HTTPS.&#xD;
+      The web client (standardnotes/web) is a separate Unraid template&#xD;
+      in the companion repo standardnotes-webui (container name&#xD;
+      "StandardNotes-WebUI"). See the project README for details.&#xD;
+    &#xD;
+    Hostname "localstack" resolution:&#xD;
+      User-defined Docker network: put both containers on the same&#xD;
+        custom bridge and give LocalStack the network alias "localstack".&#xD;
+      br0 / macvlan / VLAN / static-IP install: put LocalStack on the&#xD;
+        same VLAN with a fixed IP, then append&#xD;
+        --add-host=localstack:&lt;LocalStack-IP&gt; to this container's Extra&#xD;
+        Parameters and restart. Verify with:&#xD;
+          docker exec StandardNotes-Server getent hosts localstack&#xD;
+    &#xD;
+    Notes can duplicate in seconds if Redis, LocalStack, COOKIE_DOMAIN,&#xD;
+    the reverse proxy, or the image tag is misconfigured. Always test&#xD;
+    with a fresh throwaway account and one client first. See the README&#xD;
+    section "Sync-Loop / Duplicate Notes Guardrails".&#xD;
+  </Overview>
+  <Category>Productivity: Cloud: Security:</Category>
+  <WebUI>http://[IP]:[PORT:3000]/healthcheck</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/standardnotes-server.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/icon.png</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText/>
+  <DonateLink/>
+  <Requires>A separately running MariaDB container, a Redis container, and the StandardNotes-LocalStack companion. The server resolves the hostname "localstack" at port 4566 for SNS / SQS. On br0 / macvlan / VLAN / static-IP installs, give LocalStack a fixed IP on the same VLAN and APPEND `--add-host=localstack:&lt;LocalStack-IP&gt;` to Extra Parameters. See the project README.</Requires>
+
+  <!-- ========================================================
+       PORTS
+       ======================================================== -->
+  <Config Name="API / Gateway Port" Target="3000" Default="3000" Mode="tcp"
+          Description="HTTP port of the Standard Notes API gateway. Put behind a reverse proxy with HTTPS. Do not expose directly to the public internet."
+          Type="Port" Display="always" Required="true" Mask="false">3000</Config>
+
+  <!-- Files Server Port is defined further below, directly under Public Files Server URL. -->
+
+  <!-- ========================================================
+       PATHS
+       ======================================================== -->
+  <Config Name="Logs Path" Target="/var/lib/server/logs"
+          Default="/mnt/user/appdata/standardnotes/logs" Mode="rw"
+          Description="Persistent server logs."
+          Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/standardnotes/logs</Config>
+
+  <Config Name="Uploads Path"
+          Target="/opt/server/packages/files/dist/uploads"
+          Default="/mnt/user/appdata/standardnotes/uploads" Mode="rw"
+          Description="Persistent storage for encrypted file uploads."
+          Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/standardnotes/uploads</Config>
+
+  <!-- ========================================================
+       DATABASE (must be supplied by a separate MariaDB container)
+       ======================================================== -->
+  <Config Name="MariaDB Host" Target="DB_HOST" Default="192.168.x.x" Mode=""
+          Description="IP address of your MariaDB container."
+          Type="Variable" Display="always" Required="true" Mask="false">192.168.x.x</Config>
+
+  <Config Name="MariaDB Port" Target="DB_PORT" Default="3306" Mode=""
+          Description="MariaDB server port. Default 3306."
+          Type="Variable" Display="always" Required="true" Mask="false">3306</Config>
+
+  <Config Name="MariaDB User" Target="DB_USERNAME" Default="std_notes_user" Mode=""
+          Description="Database user. Must match the user created in MariaDB."
+          Type="Variable" Display="always" Required="true" Mask="false">std_notes_user</Config>
+
+  <Config Name="MariaDB Password" Target="DB_PASSWORD" Default="" Mode=""
+          Description="Password for the MariaDB user above."
+          Type="Variable" Display="always" Required="true" Mask="true"/>
+
+  <Config Name="MariaDB Database Name" Target="DB_DATABASE" Default="standard_notes_db" Mode=""
+          Description="Database name. Must already exist. Empty is fine; migrations run on first start."
+          Type="Variable" Display="always" Required="true" Mask="false">standard_notes_db</Config>
+
+  <Config Name="Database Driver" Target="DB_TYPE" Default="mysql" Mode=""
+          Description="Leave at 'mysql'. Internal TypeORM driver value used to talk to MariaDB. Do not change."
+          Type="Variable" Display="advanced" Required="true" Mask="false">mysql</Config>
+
+  <!-- ========================================================
+       CACHE (must be supplied by a separate Redis container)
+       ======================================================== -->
+  <Config Name="Redis Host" Target="REDIS_HOST" Default="192.168.x.x" Mode=""
+          Description="IP address of your Redis container."
+          Type="Variable" Display="always" Required="true" Mask="false">192.168.x.x</Config>
+
+  <Config Name="Redis Port" Target="REDIS_PORT" Default="6379" Mode=""
+          Description="Redis server port. Default 6379. Reachability must be tested from inside this container (same network namespace the server uses). See README for the exact node TCP probe."
+          Type="Variable" Display="always" Required="true" Mask="false">6379</Config>
+
+  <Config Name="Cache Backend" Target="CACHE_TYPE" Default="redis" Mode=""
+          Description="Cache backend. Leave at 'redis'."
+          Type="Variable" Display="advanced" Required="true" Mask="false">redis</Config>
+
+  <!-- ========================================================
+       SECRETS  - generate with `openssl rand -hex 32`
+       ======================================================== -->
+  <Config Name="JWT Secret" Target="AUTH_JWT_SECRET" Default="" Mode=""
+          Description="Required. 32-byte hex secret. Generate with: openssl rand -hex 32. Changing this invalidates all existing sessions."
+          Type="Variable" Display="always" Required="true" Mask="true"/>
+
+  <Config Name="Auth Server Encryption Key"
+          Target="AUTH_SERVER_ENCRYPTION_SERVER_KEY" Default="" Mode=""
+          Description="Required. 32-byte hex secret. Generate with: openssl rand -hex 32. Encrypts data at rest server-side. Back it up. Losing it means losing access to that data."
+          Type="Variable" Display="always" Required="true" Mask="true"/>
+
+  <Config Name="Valet Token Secret"
+          Target="VALET_TOKEN_SECRET" Default="" Mode=""
+          Description="Required. 32-byte hex secret. Generate with: openssl rand -hex 32. Signs short-lived upload/download tokens for the files server."
+          Type="Variable" Display="always" Required="true" Mask="true"/>
+
+  <!-- ========================================================
+       PUBLIC URLs / COOKIES (visible - needed for client setup)
+       ======================================================== -->
+  <Config Name="Public Files Server URL"
+          Target="PUBLIC_FILES_SERVER_URL" Default="" Mode=""
+          Description="Optional. Full HTTPS URL of the files server. Includes the https:// scheme. Example: https://files.standardnotesserver.mydomain.tld. Set only if you reverse-proxy the files server on its own subdomain. Leave empty to skip attachments; note creation, editing, and sync work without it."
+          Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <Config Name="Files Server Port" Target="3104" Default="3125" Mode="tcp"
+          Description="Host port 3125 maps to container port 3104. Forward your reverse proxy to host port 3125 (not 3104). Upstream's docker-compose maps 3125 host to 3104 container."
+          Type="Port" Display="always" Required="true" Mask="false">3125</Config>
+
+  <Config Name="Cookie Domain"
+          Target="COOKIE_DOMAIN" Default="" Mode=""
+          Description="Bare domain only. No https://, no trailing slash, no path. Example: standardnotesserver.mydomain.tld. Wrong: https://standardnotesserver.mydomain.tld. A URL here breaks session cookies. The Custom Sync Server URL entered into clients is a separate value and is a full HTTPS URL."
+          Type="Variable" Display="always" Required="false" Mask="false"/>
+
+</Container>

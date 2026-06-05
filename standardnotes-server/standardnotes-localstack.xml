@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>StandardNotes-LocalStack</Name>
+  <Repository>localstack/localstack:3.0</Repository>
+  <Registry>https://hub.docker.com/r/localstack/localstack</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/198819-support-junkerderprovinz-standard-notes-server/</Support>
+  <Project>https://github.com/localstack/localstack</Project>
+  <Overview>
+    LocalStack companion for the Standard Notes self-hosted backend.&#xD;
+    Provides the SNS and SQS endpoints the standardnotes/server image&#xD;
+    expects at "localstack:4566".&#xD;
+    &#xD;
+    Required side container. Without it, files-worker.log fills with&#xD;
+    "SQSError: SQS receive message failed: getaddrinfo ENOTFOUND&#xD;
+    localstack" and notes can duplicate.&#xD;
+    &#xD;
+    Hostname resolution. The server resolves the literal name&#xD;
+    "localstack". Pick one:&#xD;
+      User-defined Docker network: put both containers on the same&#xD;
+        custom bridge and set this container's network alias to&#xD;
+        "localstack". Docker's embedded DNS handles the rest.&#xD;
+      br0 / macvlan / VLAN / static-IP install: assign this container&#xD;
+        a fixed IP on the same VLAN as StandardNotes-Server, then&#xD;
+        append --add-host=localstack:&lt;LocalStack-IP&gt; to&#xD;
+        StandardNotes-Server's Extra Parameters and restart it.&#xD;
+    Verify from the Unraid host:&#xD;
+      docker exec StandardNotes-Server getent hosts localstack&#xD;
+    Must print a non-empty line.&#xD;
+    &#xD;
+    Required init script. LocalStack starts empty. The server expects a&#xD;
+    fixed set of SNS topics and SQS queues. The "LocalStack Bootstrap&#xD;
+    Script" path mapping below mounts the bootstrap script into&#xD;
+    /etc/localstack/init/ready.d/ where LocalStack runs it on ready.&#xD;
+    &#xD;
+    Automatic bootstrap on container start runs ONLY when ALL THREE&#xD;
+    of the following are true at first start:&#xD;
+      a) the host file /mnt/user/appdata/standardnotes/localstack_bootstrap.sh&#xD;
+         exists,&#xD;
+      b) it is executable (chmod +x),&#xD;
+      c) the "LocalStack Bootstrap Script" Path mapping is left at its&#xD;
+         default (mapped to /etc/localstack/init/ready.d/localstack_bootstrap.sh).&#xD;
+    LocalStack's init/ready.d/ hook fires ONCE per container lifetime.&#xD;
+    If the script was missing on first start, restart the container or&#xD;
+    use the README emergency-bootstrap one-liner to populate it in place.&#xD;
+    &#xD;
+    Before first start, on the Unraid host:&#xD;
+      mkdir -p /mnt/user/appdata/standardnotes&#xD;
+      curl -fsSL -o /mnt/user/appdata/standardnotes/localstack_bootstrap.sh \&#xD;
+        https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/localstack_bootstrap.sh&#xD;
+      chmod +x /mnt/user/appdata/standardnotes/localstack_bootstrap.sh&#xD;
+    &#xD;
+    Verify after start:&#xD;
+      docker exec StandardNotes-LocalStack awslocal \&#xD;
+        --endpoint-url=http://localhost:4566 sqs list-queues&#xD;
+      docker exec StandardNotes-LocalStack awslocal \&#xD;
+        --endpoint-url=http://localhost:4566 sns list-topics&#xD;
+    Both must list the *-local-queue / *-local-topic entries.&#xD;
+  </Overview>
+  <Category>Productivity: Cloud:</Category>
+  <WebUI/>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/standardnotes-localstack.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/icon.png</Icon>
+  <ExtraParams>--restart=unless-stopped --hostname=localstack</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+
+  <Config Name="LocalStack Edge Port" Target="4566" Default="4566" Mode="tcp"
+          Description="Edge port for SNS / SQS. Reachable from the server container on the same network. Publishing to the host is optional."
+          Type="Port" Display="advanced" Required="false" Mask="false">4566</Config>
+
+  <Config Name="Services (SERVICES)" Target="SERVICES" Default="sns,sqs" Mode=""
+          Description="Required services. Keep sns,sqs."
+          Type="Variable" Display="always" Required="true" Mask="false">sns,sqs</Config>
+
+  <Config Name="External Hostname (HOSTNAME_EXTERNAL)"
+          Target="HOSTNAME_EXTERNAL" Default="localstack" Mode=""
+          Description="Keep localstack. Server resolves this name."
+          Type="Variable" Display="always" Required="true" Mask="false">localstack</Config>
+
+  <Config Name="Log Level (LS_LOG)" Target="LS_LOG" Default="warn" Mode=""
+          Description="Log level. Default warn."
+          Type="Variable" Display="advanced" Required="false" Mask="false">warn</Config>
+
+  <Config Name="LocalStack Bootstrap Script"
+          Target="/etc/localstack/init/ready.d/localstack_bootstrap.sh"
+          Default="/mnt/user/appdata/standardnotes/localstack_bootstrap.sh" Mode="ro"
+          Description="Required bootstrap script. Creates Standard Notes SNS topics and SQS queues. See Overview for the curl + chmod host-prep commands."
+          Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/standardnotes/localstack_bootstrap.sh</Config>
+
+</Container>

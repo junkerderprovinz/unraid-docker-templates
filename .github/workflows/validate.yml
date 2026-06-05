@@ -1,0 +1,45 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install xmllint
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libxml2-utils
+
+      - name: XML well-formedness
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s globstar nullglob
+          n=0
+          for f in **/*.xml; do
+            echo "xmllint $f"
+            xmllint --noout "$f"
+            n=$((n + 1))
+          done
+          echo "checked $n XML file(s)"
+
+      - name: Template self-references
+        shell: bash
+        run: |
+          set -euo pipefail
+          fail=0
+          for d in openhands standardnotes-server standardnotes-webui; do
+            for f in "$d"/*.xml; do
+              [ -e "$f" ] || continue
+              for tag in Name Repository Icon TemplateURL; do
+                grep -q "<$tag>" "$f" || { echo "::error file=$f::missing <$tag>"; fail=1; }
+              done
+              grep -q "raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/$d/" "$f" \
+                || { echo "::error file=$f::TemplateURL/Icon does not self-reference $d/"; fail=1; }
+            done
+          done
+          exit "$fail"

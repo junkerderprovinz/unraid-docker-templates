@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>OpenHands</Name>
+  <Repository>docker.openhands.dev/openhands/openhands:1.7</Repository>
+  <Registry>https://docker.openhands.dev/openhands/openhands</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-openhands/</Support>
+  <Project>https://github.com/OpenHands/OpenHands</Project>
+  <Overview>OpenHands is an open-source AI-driven development agent. It writes, reviews, and tests code. Important: Requires access to the Docker socket to spin up isolated execution environments. Pre-configured for local Ollama use.</Overview>
+  <Category>Tools: Utilities: Productivity: Development:</Category>
+  <WebUI>http://[IP]:[PORT:3000]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/openhands/openhands.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/openhands/icon.png</Icon>
+  <ExtraParams>--add-host host.docker.internal:host-gateway</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Requires>A reachable Ollama instance (or any OpenAI-compatible LLM endpoint) configured via the LLM_* variables. Defaults assume Ollama running on the Unraid host, reachable via host.docker.internal.</Requires>
+  <Config Name="WebUI" Target="3000" Default="3000" Mode="tcp" Description="OpenHands web interface" Type="Port" Display="always" Required="true" Mask="false">3000</Config>
+  <Config Name="Config Directory" Target="/.openhands" Default="/mnt/user/appdata/openhands" Mode="rw" Description="Persistent OpenHands configuration and state" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/openhands</Config>
+  <Config Name="Workspace Directory" Target="/workspace" Default="/mnt/user/ai-workspace" Mode="rw" Description="Working directory exposed to the agent" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/ai-workspace</Config>
+  <Config Name="Docker Socket" Target="/var/run/docker.sock" Default="/var/run/docker.sock" Mode="rw" Description="Required so OpenHands can spawn isolated sandbox containers" Type="Path" Display="always" Required="true" Mask="false">/var/run/docker.sock</Config>
+  <Config Name="Sandbox Volumes" Target="SANDBOX_VOLUMES" Default="/mnt/user/ai-workspace:/workspace:rw" Mode="" Description="Host:container mount(s) injected into every sandbox container the agent spins up. Must match the Workspace Directory mapping." Type="Variable" Display="always" Required="true" Mask="false">/mnt/user/ai-workspace:/workspace:rw</Config>
+  <Config Name="LLM API Key" Target="LLM_API_KEY" Default="ollama" Mode="" Description="API key for the LLM backend. For Ollama any non-empty value works (e.g. 'ollama')." Type="Variable" Display="always" Required="true" Mask="true">ollama</Config>
+  <Config Name="LLM Model" Target="LLM_MODEL" Default="ollama/qwen2.5-coder:14b" Mode="" Description="LiteLLM-style model string. Default targets Ollama with qwen2.5-coder:14b." Type="Variable" Display="always" Required="true" Mask="false">ollama/qwen2.5-coder:14b</Config>
+  <Config Name="LLM Base URL" Target="LLM_BASE_URL" Default="http://host.docker.internal:11434" Mode="" Description="Base URL of the LLM endpoint. Default reaches Ollama on the Unraid host via host.docker.internal. For a remote/LAN Ollama use http://&lt;host&gt;:11434. Leave blank for hosted providers (OpenAI/Anthropic/etc.) that use their own endpoints." Type="Variable" Display="always" Required="false" Mask="false">http://host.docker.internal:11434</Config>
+  <Config Name="LLM Embedding Model" Target="LLM_EMBEDDING_MODEL" Default="local" Mode="" Description="Embedding model used for memory/context. 'local' uses the bundled embedding model." Type="Variable" Display="always" Required="false" Mask="false">local</Config>
+</Container>
