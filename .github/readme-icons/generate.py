@@ -20,8 +20,9 @@ ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 # README-card icons to generate (every app except Krusader, which stays transparent)
 APPS = ["featherdrop", "jdownloader", "matrix", "openhands",
         "n8n", "standardnotes-server", "standardnotes-webui"]
-# logos to crop edge-to-edge (white only inside the logo, no surrounding margin)
-EDGE_TO_EDGE = {"standardnotes-server", "standardnotes-webui"}
+# logos to crop and centre with a small white margin (Standard Notes)
+MARGIN_LOGOS = {"standardnotes-server", "standardnotes-webui"}
+LOGO_FILL = 0.82  # fraction of the tile the cropped logo fills (rest = white margin)
 
 
 def krusader_corner_ratio():
@@ -70,8 +71,13 @@ def main():
         src = Image.open(os.path.join(ROOT, app, "icon.png")).convert("RGBA")
         w, h = src.size
         canvas = Image.new("RGBA", (w, h), (255, 255, 255, 255))
-        if app in EDGE_TO_EDGE:
-            canvas.paste(src.crop(content_bbox(src)).resize((w, h), Image.LANCZOS), (0, 0))
+        if app in MARGIN_LOGOS:
+            logo = src.crop(content_bbox(src))
+            target = int(round(min(w, h) * LOGO_FILL))
+            lw, lh = logo.size
+            s = target / max(lw, lh)
+            logo = logo.resize((max(1, round(lw * s)), max(1, round(lh * s))), Image.LANCZOS)
+            canvas.paste(logo, ((w - logo.size[0]) // 2, (h - logo.size[1]) // 2))
         else:
             canvas = Image.alpha_composite(canvas, src)
             corner = canvas.load()[0, 0]
