@@ -9,6 +9,7 @@
   <Privileged>false</Privileged>
   <Support>https://forums.unraid.net/topic/198819-support-junkerderprovinz-standard-notes-server/</Support>
   <Project>https://standardnotes.com</Project>
+  <ReadMe>https://github.com/junkerderprovinz/unraid-docker-templates/blob/main/standardnotes-server/README.md</ReadMe>
   <Overview>
     Standard Notes self-hosted backend for Unraid (community template).&#xD;
     End-to-end encrypted notes, sync, files, auth and API gateway in the&#xD;
