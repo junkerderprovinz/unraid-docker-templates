@@ -7,7 +7,7 @@
   <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Support>https://github.com/junkerderprovinz/n8n/issues</Support>
+  <Support>https://github.com/junkerderprovinz/unraid-docker-templates/issues</Support>
   <Project>https://n8n.io</Project>
   <ReadMe>https://github.com/junkerderprovinz/unraid-docker-templates/blob/main/n8n/README.md</ReadMe>
   <Overview>
