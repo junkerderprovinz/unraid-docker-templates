@@ -50,7 +50,7 @@
     Before first start, on the Unraid host:&#xD;
       mkdir -p /mnt/user/appdata/standardnotes&#xD;
       curl -fsSL -o /mnt/user/appdata/standardnotes/localstack_bootstrap.sh \&#xD;
-        https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/localstack_bootstrap.sh&#xD;
+        https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/scripts/localstack_bootstrap.sh&#xD;
       chmod +x /mnt/user/appdata/standardnotes/localstack_bootstrap.sh&#xD;
     &#xD;
     Verify after start:&#xD;

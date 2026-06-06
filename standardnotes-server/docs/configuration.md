@@ -110,7 +110,7 @@ script on the host:
 ```bash
 mkdir -p /mnt/user/appdata/standardnotes
 curl -fsSL -o /mnt/user/appdata/standardnotes/localstack_bootstrap.sh \
-  https://raw.githubusercontent.com/junkerderprovinz/standardnotes-server/main/scripts/localstack_bootstrap.sh
+  https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/scripts/localstack_bootstrap.sh
 chmod +x /mnt/user/appdata/standardnotes/localstack_bootstrap.sh
 ```
 

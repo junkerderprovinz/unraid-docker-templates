@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256"
+     role="img" aria-label="Standard Notes">
+  <!-- CA tile: official Standard Notes mark (188x188) on a solid white square,
+       scaled to fill the tile with a small 12px margin (Unraid CA icon). -->
+  <rect x="0" y="0" width="256" height="256" fill="#ffffff"/>
+  <g transform="translate(12 12) scale(1.2340)">
+    <path d="M152 0C171.882 0 188 16.1178 188 36V150C188 169.572 172.382 185.496 152.929 185.988L152 186H36L35.0713 185.988C15.6183 185.496 0 169.572 0 150V36C0 16.1178 16.1178 0 36 0H152ZM36 17C25.5066 17 17 25.5066 17 36V150C17 160.493 25.5066 169 36 169H152C162.493 169 171 160.493 171 150V36C171 25.5066 162.493 17 152 17H36ZM94 52.5C114.282 52.5 130.457 68.2213 130.986 88H131V132H114V89C114 78.3182 105.41 69.5 94 69.5C82.5899 69.5 74 78.3182 74 89V132H57V89C57 68.7538 73.3776 52.5 94 52.5Z"
+          fill="#1C6EE0"/>
+  </g>
+</svg>

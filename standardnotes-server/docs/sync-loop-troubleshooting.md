@@ -355,7 +355,7 @@ Bootstrap Script* Path mapping.
     ```bash
     mkdir -p /mnt/user/appdata/standardnotes
     curl -fsSL -o /mnt/user/appdata/standardnotes/localstack_bootstrap.sh \
-      https://raw.githubusercontent.com/junkerderprovinz/standardnotes-server/main/scripts/localstack_bootstrap.sh
+      https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/scripts/localstack_bootstrap.sh
     chmod +x /mnt/user/appdata/standardnotes/localstack_bootstrap.sh
     ```
 
@@ -366,7 +366,7 @@ Bootstrap Script* Path mapping.
 
     ```bash
     curl -fsSL -o /tmp/localstack_bootstrap.sh \
-      https://raw.githubusercontent.com/junkerderprovinz/standardnotes-server/main/scripts/localstack_bootstrap.sh
+      https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/scripts/localstack_bootstrap.sh
     docker cp /tmp/localstack_bootstrap.sh \
       StandardNotes-LocalStack:/tmp/localstack_bootstrap.sh
     docker exec StandardNotes-LocalStack \
