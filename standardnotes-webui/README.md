@@ -368,9 +368,9 @@ Before submitting this repo at <https://ca.unraid.net/submit>:
 - `templates/standardnotes-webui.xml` parses (`xmllint --noout`),
   pulls a real image, and every raw GitHub URL in it (`<TemplateURL>`,
   `<Icon>`) returns 200.
-- An Unraid forum **support thread** exists for this template; its
-  URL is set in the template's `<Support>` tag (currently the GitHub
-  Issues fallback — replace with the forum URL before submission).
+- A shared Unraid forum **support thread** for these templates is set in
+  the template's `<Support>` tag:
+  <https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-docker-templates/>.
 
 ```bash
 xmllint --noout templates/standardnotes-webui.xml ca_profile.xml

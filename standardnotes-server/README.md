@@ -1157,11 +1157,9 @@ Pull requests welcome. Issues:
 <https://github.com/junkerderprovinz/unraid-docker-templates/issues>.
 
 > **Support link note / Hinweis zum Support-Link:** The `<Support>` tag in
-> both Unraid templates currently points at the GitHub Issues tracker.
-> Once an Unraid forum support thread exists, replace (or supplement) that
-> URL — see [`docs/PUBLISHING.md`](docs/PUBLISHING.md) for the steps.
-> Sobald ein Unraid-Forum-Thread existiert, sollte der `<Support>`-Link
-> dort hin zeigen (oder zusätzlich), siehe `docs/PUBLISHING.md`.
+> both Unraid templates points at the shared support thread for these templates:
+> <https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-docker-templates/>.
+> Der `<Support>`-Link beider Templates zeigt auf diesen gemeinsamen Thread.
 
 **License:** [MIT](LICENSE).
 

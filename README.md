@@ -31,7 +31,8 @@ On Unraid: open **Apps** (Community Applications) and search for the app name �
 To add a single template by hand, paste its raw `*.xml` URL into **Add Container → Template**, e.g.
 `https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/openhands/openhands.xml`
 
-Each app folder has its own README with full details and the Unraid support thread.
+Each app folder has its own README with full details. All these templates share one Unraid support thread:
+[forums.unraid.net › unraid-docker-templates](https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-docker-templates/).
 
 ## License
 
