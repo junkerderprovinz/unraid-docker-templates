@@ -96,6 +96,7 @@ Workflow automation — connect 400+ apps and APIs. PostgreSQL by default, every
 
 <br clear="all">
 
+
 ## Install
 
 On Unraid: open **Apps** (Community Applications) and search for the app name — these templates are published from this repository.
@@ -104,7 +105,3 @@ To add a single template by hand, paste its raw `*.xml` URL into **Add Container
 `https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/openhands/openhands.xml`
 
 Own-image apps link to their dedicated repository's README; wrapper apps keep their README in their folder here.
-
-## License
-
-[MIT](LICENSE)
