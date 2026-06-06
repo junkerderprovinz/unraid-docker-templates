@@ -21,88 +21,80 @@ Unraid <b>Community Applications</b> templates for all of junkerderprovinz's con
 *Built and published by junkerderprovinz — full docs live in each app's own repository.*
 
 <img src="krusader/icon.png" width="84" align="left" alt="Krusader">
+<a href="https://github.com/junkerderprovinz/krusader#readme"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Repository%20%26%20ReadMe-f6f8fa?style=for-the-badge&logo=github&logoColor=181717"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-181717?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></picture></a>
 
 #### Krusader
 
 Twin-pane KDE file manager with a native dark theme, on a fast KasmVNC web desktop (Kate, krename, RAR).
 
-**[→ Krusader repo &amp; README](https://github.com/junkerderprovinz/krusader#readme)**
-
-<br clear="left">
+<br clear="all">
 
 <img src=".github/readme-icons/jdownloader.png" width="84" align="left" alt="JDownloader">
+<a href="https://github.com/junkerderprovinz/jdownloader#readme"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Repository%20%26%20ReadMe-f6f8fa?style=for-the-badge&logo=github&logoColor=181717"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-181717?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></picture></a>
 
 #### JDownloader
 
 JDownloader 2 with a complete, sleek dark UI out of the box, on a KasmVNC web desktop.
 
-**[→ JDownloader repo &amp; README](https://github.com/junkerderprovinz/jdownloader#readme)**
-
-<br clear="left">
+<br clear="all">
 
 <img src=".github/readme-icons/matrix.png" width="84" align="left" alt="Matrix">
+<a href="https://github.com/junkerderprovinz/matrix#readme"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Repository%20%26%20ReadMe-f6f8fa?style=for-the-badge&logo=github&logoColor=181717"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-181717?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></picture></a>
 
 #### Matrix
 
 All-in-one Matrix homeserver: Synapse + coturn + Element Web + Synapse-Admin in one container.
 
-**[→ Matrix repo &amp; README](https://github.com/junkerderprovinz/matrix#readme)**
-
-<br clear="left">
+<br clear="all">
 
 <img src=".github/readme-icons/featherdrop.png" width="84" align="left" alt="featherdrop">
+<a href="https://github.com/junkerderprovinz/featherdrop#readme"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Repository%20%26%20ReadMe-f6f8fa?style=for-the-badge&logo=github&logoColor=181717"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-181717?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></picture></a>
 
 #### featherdrop
 
 A clean, login-free self-hosted file sharer — drop a file, set an expiry, share a link.
 
-**[→ featherdrop repo &amp; README](https://github.com/junkerderprovinz/featherdrop#readme)**
-
-<br clear="left">
+<br clear="all">
 
 ### Upstream-image wrappers
 
 *Templates for third-party images (no custom build) — full docs in each app's folder below.*
 
 <img src=".github/readme-icons/openhands.png" width="84" align="left" alt="OpenHands">
+<a href="openhands/README.md"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Repository%20%26%20ReadMe-f6f8fa?style=for-the-badge&logo=github&logoColor=181717"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-181717?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></picture></a>
 
 #### OpenHands
 
 Open-source AI software-development agent, pre-wired for a local Ollama model.
 
-**[→ OpenHands README](openhands/README.md)**
-
-<br clear="left">
+<br clear="all">
 
 <img src=".github/readme-icons/standardnotes-server.png" width="84" align="left" alt="Standard Notes Server">
+<a href="standardnotes-server/README.md"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Repository%20%26%20ReadMe-f6f8fa?style=for-the-badge&logo=github&logoColor=181717"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-181717?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></picture></a>
 
 #### Standard Notes Server
 
 Self-hosted Standard Notes sync server (external MariaDB + Redis). Includes an optional **LocalStack** template for S3-compatible file storage.
 
-**[→ Standard Notes Server README](standardnotes-server/README.md)**
-
-<br clear="left">
+<br clear="all">
 
 <img src=".github/readme-icons/standardnotes-webui.png" width="84" align="left" alt="Standard Notes Web UI">
+<a href="standardnotes-webui/README.md"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Repository%20%26%20ReadMe-f6f8fa?style=for-the-badge&logo=github&logoColor=181717"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-181717?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></picture></a>
 
 #### Standard Notes Web UI
 
 The official Standard Notes web client.
 
-**[→ Standard Notes Web UI README](standardnotes-webui/README.md)**
-
-<br clear="left">
+<br clear="all">
 
 <img src=".github/readme-icons/n8n.png" width="84" align="left" alt="n8n">
+<a href="n8n/README.md"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Repository%20%26%20ReadMe-f6f8fa?style=for-the-badge&logo=github&logoColor=181717"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-181717?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></picture></a>
 
 #### n8n
 
 Workflow automation — connect 400+ apps and APIs. PostgreSQL by default, every option exposed in the template form.
 
-**[→ n8n README](n8n/README.md)**
-
-<br clear="left">
+<br clear="all">
 
 ## Install
 
