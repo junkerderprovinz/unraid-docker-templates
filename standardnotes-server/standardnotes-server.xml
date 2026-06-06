@@ -61,7 +61,7 @@
     the reverse proxy, or the image tag is misconfigured. Always test&#xD;
     with a fresh throwaway account and one client first. See the README&#xD;
     section "Sync-Loop / Duplicate Notes Guardrails".&#xD;
-  </Overview>
+  &#xD;&#xD;Detailed README (full setup &amp; options): https://github.com/junkerderprovinz/unraid-docker-templates/blob/main/standardnotes-server/README.md</Overview>
   <Category>Productivity: Cloud: Security:</Category>
   <WebUI>http://[IP]:[PORT:3000]/healthcheck</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/standardnotes-server.xml</TemplateURL>

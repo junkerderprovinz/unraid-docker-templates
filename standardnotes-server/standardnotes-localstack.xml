@@ -60,7 +60,7 @@
       docker exec StandardNotes-LocalStack awslocal \&#xD;
         --endpoint-url=http://localhost:4566 sns list-topics&#xD;
     Both must list the *-local-queue / *-local-topic entries.&#xD;
-  </Overview>
+  &#xD;&#xD;Detailed README (full setup &amp; options): https://github.com/junkerderprovinz/unraid-docker-templates/blob/main/standardnotes-server/README.md</Overview>
   <Category>Productivity: Cloud:</Category>
   <WebUI/>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/standardnotes-localstack.xml</TemplateURL>

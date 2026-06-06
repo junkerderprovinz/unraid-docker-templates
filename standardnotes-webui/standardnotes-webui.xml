@@ -58,7 +58,7 @@
       http://[unraid-ip]:[port]/ will fail at sign-up with&#xD;
       "crypto.subtle is undefined". HTTPS also avoids mix-content&#xD;
       blocks on API calls to the HTTPS backend.&#xD;
-  </Overview>
+  &#xD;&#xD;Detailed README (full setup &amp; options): https://github.com/junkerderprovinz/unraid-docker-templates/blob/main/standardnotes-webui/README.md</Overview>
   <Category>Productivity: Cloud:</Category>
   <WebUI>http://[IP]:[PORT:3001]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-webui/standardnotes-webui.xml</TemplateURL>
