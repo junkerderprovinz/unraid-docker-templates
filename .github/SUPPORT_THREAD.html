@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--
+  Unraid Community Applications support thread for the unraid-docker-templates
+  collection (OpenHands, Standard Notes Server/LocalStack/Web UI, n8n).
+  Structure mirrors the own-image app threads (e.g. Krusader, featherdrop):
+  title -> subtitle -> banner -> buttons -> What is this? -> one section per app
+  -> Requirements -> Posting a bug report -> Credits -> disclaimer.
+  Open standalone in a browser, or paste into the Unraid forum editor's source.
+  Title: [Support] junkerderprovinz - Unraid Docker Templates
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Support] junkerderprovinz - Unraid Docker Templates</title>
+<style>
+  body { max-width: 900px; margin: 1.5rem auto; padding: 0 1rem;
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         line-height: 1.6; color: #1c1c1c; }
+  h1 { text-align: center; font-size: 1.7rem; margin-bottom: .2rem; }
+  .subtitle { text-align: center; color: #666; font-style: italic; margin-top: 0; }
+  h2 { margin-top: 1.9rem; font-size: 1.25rem; }
+  h3 { margin-top: 1.5rem; font-size: 1.1rem; }
+  code { background: #f1f1f1; padding: .1em .35em; border-radius: 4px; font-size: .9em; }
+  a { color: #c79a1e; }
+  ul { padding-left: 1.2rem; }
+  li { margin: .25rem 0; }
+  img { border: 0; vertical-align: middle; }
+  hr { border: 0; border-top: 1px solid #ddd; margin: 2rem 0; }
+  .footnote { color: #777; font-size: .9em; font-style: italic; text-align: center; margin-top: 2rem; }
+</style>
+</head>
+<body>
+
+<h1>Unraid Docker Templates – a small collection of community templates</h1>
+<p class="subtitle">One support thread for my upstream-image apps: OpenHands, Standard Notes (Server / LocalStack / Web UI) and n8n.</p>
+
+<p align="center">
+  <a href="https://github.com/junkerderprovinz/unraid-docker-templates">
+    <img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/.github/assets/banner.svg" alt="Unraid Docker Templates" width="100%">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://unraid.net/community/apps"><img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/.github/assets/support-buttons/install-on-unraid.svg" alt="Install on Unraid" width="240"></a>
+  &nbsp;
+  <a href="https://github.com/junkerderprovinz/unraid-docker-templates"><img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/.github/assets/support-buttons/view-on-github.svg" alt="View on GitHub" width="240"></a>
+  &nbsp;
+  <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/.github/assets/support-buttons/buy-me-a-coffee.svg" alt="Buy me a coffee" width="240"></a>
+</p>
+
+<h2>What is this?</h2>
+<p>This thread supports my <strong>template-only</strong> Unraid apps — the ones that run
+straight from an <strong>upstream Docker image</strong> with no custom build. They all live
+in one repository (<a href="https://github.com/junkerderprovinz/unraid-docker-templates">unraid-docker-templates</a>),
+one folder per app, each with its own detailed README. Apps that ship their <strong>own
+image</strong> — Krusader, JDownloader, Matrix, featherdrop — have their <em>own</em> separate
+support threads.</p>
+<p>To install any of them: open <strong>Apps</strong> (Community Applications) on Unraid and
+search for the name below. Post here for any of these apps — just say <strong>which one</strong>.</p>
+
+<hr>
+
+<h2>OpenHands</h2>
+<p>Open-source <strong>AI software-development agent</strong> — give it a task and it reads,
+writes and runs code in a sandbox. The template defaults to a <strong>local Ollama</strong>
+backend, so nothing leaves your server unless you point it at a hosted model.</p>
+<ul>
+  <li>Web UI agent that can edit files, run commands and browse, all sandboxed</li>
+  <li>Local-first: works against a local Ollama endpoint out of the box; any OpenAI-compatible API also works</li>
+  <li>Search Community Applications for <strong>OpenHands</strong></li>
+  <li>Image: <code>docker.openhands.dev/openhands/openhands:1.7</code></li>
+  <li><a href="https://github.com/junkerderprovinz/unraid-docker-templates/blob/main/openhands/README.md">Full README &amp; setup</a></li>
+</ul>
+
+<h2>Standard Notes Server</h2>
+<p>Self-hosted sync server for <strong>Standard Notes</strong>, the encrypted notes app. Keeps
+your notes on your own hardware. Uses an <strong>external MariaDB + Redis</strong> (your
+existing Unraid containers).</p>
+<ul>
+  <li>End-to-end encrypted sync under your control</li>
+  <li>Pairs with the LocalStack and Web UI templates below</li>
+  <li>Search Community Applications for <strong>Standard Notes Server</strong></li>
+  <li>Image: <code>standardnotes/server:latest</code></li>
+  <li><a href="https://github.com/junkerderprovinz/unraid-docker-templates/blob/main/standardnotes-server/README.md">Full README &amp; setup</a></li>
+</ul>
+
+<h2>Standard Notes LocalStack</h2>
+<p><strong>S3-compatible file storage</strong> for the Standard Notes server — the backend that
+holds file attachments. A companion to the Server template (it shares this thread and that
+README).</p>
+<ul>
+  <li>Provides the S3 API the Standard Notes server expects for files</li>
+  <li>Only needed if you want file attachments</li>
+  <li>Search Community Applications for <strong>Standard Notes LocalStack</strong></li>
+  <li>Image: <code>localstack/localstack:3.0</code></li>
+  <li><a href="https://github.com/junkerderprovinz/unraid-docker-templates/blob/main/standardnotes-server/README.md">Full README &amp; setup</a></li>
+</ul>
+
+<h2>Standard Notes Web UI</h2>
+<p>The official <strong>Standard Notes web client</strong> — the browser app, self-hosted next
+to your server so you are not tied to the public web app.</p>
+<ul>
+  <li>Full Standard Notes editor in the browser, pointed at your own server</li>
+  <li>Search Community Applications for <strong>Standard Notes Web UI</strong></li>
+  <li>Image: <code>standardnotes/web:latest</code></li>
+  <li><a href="https://github.com/junkerderprovinz/unraid-docker-templates/blob/main/standardnotes-webui/README.md">Full README &amp; setup</a></li>
+</ul>
+
+<h2>n8n</h2>
+<p><strong>Workflow automation</strong> with 400+ integrations — connect apps, APIs and
+services into automated flows, with a visual editor. The template defaults to
+<strong>PostgreSQL</strong> and exposes every relevant option.</p>
+<ul>
+  <li>Visual workflow builder; huge node/integration library</li>
+  <li>PostgreSQL by default (your existing Unraid Postgres); SQLite also possible</li>
+  <li>Every meaningful environment option surfaced in the template</li>
+  <li>Search Community Applications for <strong>n8n</strong></li>
+  <li>Image: <code>n8nio/n8n:latest</code></li>
+  <li><a href="https://github.com/junkerderprovinz/unraid-docker-templates/blob/main/n8n/README.md">Full README &amp; setup</a></li>
+</ul>
+
+<hr>
+
+<h2>Requirements</h2>
+<ul>
+  <li>Unraid 6.10+ with the <strong>Community Applications</strong> plugin</li>
+  <li>These are <strong>upstream images</strong> — the template wires sensible Unraid defaults, paths and ports; the app itself is the vendor's</li>
+  <li>Some apps need a <strong>database/cache you already run</strong> (Standard Notes: MariaDB + Redis; n8n: PostgreSQL) — set the connection fields in the template</li>
+  <li>For anything reachable from outside, put a <strong>reverse proxy with HTTPS</strong> in front</li>
+</ul>
+
+<h2>Posting a bug report</h2>
+<p>Please include:</p>
+<ul>
+  <li><strong>Which app</strong> (OpenHands / Standard Notes Server / LocalStack / Web UI / n8n)</li>
+  <li>Unraid version (Settings → System Information)</li>
+  <li>Image tag (<code>latest</code> or the pinned version shown above)</li>
+  <li>Output of <code>docker logs --tail 200 &lt;container&gt;</code></li>
+  <li>Which template fields you changed (DB/Redis/Postgres connection, ports, paths, model endpoint, etc.)</li>
+</ul>
+<p>GitHub issues with the same info are welcome too:
+<a href="https://github.com/junkerderprovinz/unraid-docker-templates/issues">github.com/junkerderprovinz/unraid-docker-templates/issues</a></p>
+
+<h2>Credits</h2>
+<p>All credit for the apps goes to their upstream projects —
+<a href="https://github.com/All-Hands-AI/OpenHands">OpenHands</a>,
+<a href="https://standardnotes.com">Standard Notes</a>,
+<a href="https://github.com/localstack/localstack">LocalStack</a> and
+<a href="https://n8n.io">n8n</a>. I only maintain the Unraid templates. If they save
+you some setup time, you can <a href="https://buymeacoffee.com/junkerderprovinz">buy me a coffee</a>.</p>
+
+<hr>
+
+<p class="footnote">Self-hosted, MIT-licensed templates — you run the containers, you own your data and the responsibility.</p>
+
+</body>
+</html>
