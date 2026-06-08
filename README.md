@@ -53,7 +53,7 @@ All-in-one Matrix homeserver: Synapse + coturn + Element Web + Synapse-Admin in 
 
 #### featherdrop
 
-A clean, login-free self-hosted file sharer — drop a file, set an expiry, share a link.
+Feather-light, login-free self-hosted file sharing — drop a file, set an expiry, share a link.
 
 <br clear="all">
 
