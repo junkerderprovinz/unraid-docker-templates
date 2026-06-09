@@ -68,40 +68,60 @@ disabled, and the LAN login gotcha already handled.
 - **LAN-friendly login** — `N8N_SECURE_COOKIE=false` (flip it for HTTPS).
 - **Webhook / reverse-proxy fields** ready (`WEBHOOK_URL`, `N8N_HOST`, `N8N_PROTOCOL`).
 - **Optional `/files` mount** for the Read/Write Files node.
-- **Every option visible** in the template form — no hidden "advanced" settings.
+- **Every option visible** in the template form — no hidden "advanced" settings, and fields with
+  fixed values (DB type, both timezones, the booleans, protocol) are **dropdowns**.
 
 <br>
 
 ## 3. PostgreSQL setup (do this first)
 
-This template defaults to PostgreSQL, so n8n needs a database **before** its first start. Use
-the official **PostgreSQL** Community Applications app (or any reachable Postgres server), then
-create a database and user:
+This template defaults to PostgreSQL, so n8n needs a database **before** its first start. Use the
+official **PostgreSQL** Community Applications app (or any reachable Postgres server). Run the
+commands below from the Unraid console.
+
+### 3a. Commands with placeholders
+
+Replace `<postgres-container>`, `<database>`, `<user>` and `<password>` with your own values.
+
+Log into the PostgreSQL server's interactive shell — note **`-it`** (interactive + TTY) for a
+login session, not just `-i`:
+
+```bash
+docker exec -it <postgres-container> psql -U postgres
+```
+
+Then, at the `postgres=#` prompt, create the database, user and grants (`\q` quits):
+
+```sql
+CREATE DATABASE <database>;
+CREATE USER <user> WITH PASSWORD '<password>';
+GRANT ALL PRIVILEGES ON DATABASE <database> TO <user>;
+\connect <database>
+GRANT ALL ON SCHEMA public TO <user>;
+\q
+```
+
+### 3b. Example (database `n8n`, user `admin`, password `password`)
+
+The exact same commands with concrete values — here the Postgres container is named `PostgreSQL`
+(use a strong password in production):
+
+```bash
+docker exec -it PostgreSQL psql -U postgres
+```
 
 ```sql
 CREATE DATABASE n8n;
-CREATE USER n8n WITH PASSWORD 'choose-a-strong-password';
-GRANT ALL PRIVILEGES ON DATABASE n8n TO n8n;
--- PostgreSQL 15+ also needs schema rights:
+CREATE USER admin WITH PASSWORD 'password';
+GRANT ALL PRIVILEGES ON DATABASE n8n TO admin;
 \connect n8n
-GRANT ALL ON SCHEMA public TO n8n;
+GRANT ALL ON SCHEMA public TO admin;
+\q
 ```
 
-One-liner from the Unraid console (adjust the container name `PostgreSQL`):
-
-```bash
-docker exec -i PostgreSQL psql -U postgres <<'SQL'
-CREATE DATABASE n8n;
-CREATE USER n8n WITH PASSWORD 'choose-a-strong-password';
-GRANT ALL PRIVILEGES ON DATABASE n8n TO n8n;
-\connect n8n
-GRANT ALL ON SCHEMA public TO n8n;
-SQL
-```
-
-Then fill the template's **Postgres Host / Port / Database / User / Password** fields. If
-Postgres and n8n share a custom Docker network you can use the container name as the host;
-otherwise use its IP.
+Then fill the template's **Postgres Host / Port / Database / User / Password** fields with those
+values (for the example: Database `n8n`, User `admin`, Password `password`). If Postgres and n8n
+share a custom Docker network you can use the container name as the host; otherwise use its IP.
 
 > **Prefer SQLite?** Set **DB Type** to `sqlite` and leave the Postgres fields empty.
 
@@ -111,8 +131,9 @@ otherwise use its IP.
 
 1. **Apps** tab → search **n8n** (by junkerderprovinz) → **Install**.
 2. Do the [PostgreSQL setup](#3-postgresql-setup-do-this-first) and fill the Postgres fields.
-3. Fix the AppData [permissions](#5-permissions-important) (one command).
-4. Set **Timezone** / **Generic Timezone**, optionally an **Encryption Key**.
+3. Create the AppData folder and fix [permissions](#5-permissions-important) (two commands).
+4. Pick a **Timezone** / **Generic Timezone** from the dropdowns; optionally set an **Encryption
+   Key** — generate one with `openssl rand -hex 32` and back it up.
 5. **Apply**, wait for the pull, open the WebUI on port **5678**.
 
 <br>
@@ -120,45 +141,48 @@ otherwise use its IP.
 ## 5. Permissions (important)
 
 The official n8n image runs as **`node` (UID 1000)** and has **no `PUID`/`PGID`**. The AppData
-folder must be writable by UID 1000, or n8n fails to start with `EACCES`. Run once on the
-Unraid console:
+folder must **exist** and be writable by UID 1000, or n8n fails to start with `EACCES`. **Create
+the folder first, then** run the `chown` — once, on the Unraid console:
 
 ```bash
+mkdir -p /mnt/user/appdata/n8n/files
 chown -R 1000:1000 /mnt/user/appdata/n8n
-chown -R 1000:1000 /mnt/user/appdata/n8n-files   # only if you use the /files mount
 ```
 
-This is the single most common reason n8n won't start on Unraid.
+`mkdir -p .../n8n/files` creates both the AppData folder and the optional `/files` folder in one
+go; the recursive `chown` then covers both. This is the single most common reason n8n won't start
+on Unraid.
 
 <br>
 
 ## 6. Configuration
 
-Every field is shown in the template (nothing hidden under "advanced").
+Every field is shown in the template (nothing hidden under "advanced"). Fields with a fixed set of
+values are **dropdowns** — pick instead of type.
 
 | Field | Variable / path | Default | Notes |
 |---|---|---|---|
 | WebUI Port | `5678` | `5678` | n8n editor port |
 | AppData | `/home/node/.n8n` | `/mnt/user/appdata/n8n` | encryption key, binary data, logs |
-| Local Files | `/files` | `/mnt/user/appdata/n8n-files` | optional, Read/Write Files node |
-| DB Type | `DB_TYPE` | `postgresdb` | `postgresdb` or `sqlite` |
-| Postgres Host | `DB_POSTGRESDB_HOST` | — | your Postgres server |
+| Local Files | `/files` | `/mnt/user/appdata/n8n/files` | optional, Read/Write Files node |
+| DB Type | `DB_TYPE` | `postgresdb` | **dropdown** — `postgresdb` or `sqlite` |
+| Postgres Host | `DB_POSTGRESDB_HOST` | `192.168.1.10` | placeholder IP — set your Postgres server |
 | Postgres Port | `DB_POSTGRESDB_PORT` | `5432` | |
 | Postgres Database | `DB_POSTGRESDB_DATABASE` | `n8n` | created in step 3 |
 | Postgres User | `DB_POSTGRESDB_USER` | `n8n` | created in step 3 |
 | Postgres Password | `DB_POSTGRESDB_PASSWORD` | — | masked |
-| Encryption Key | `N8N_ENCRYPTION_KEY` | auto | set + back up a long random value |
-| Secure Cookie | `N8N_SECURE_COOKIE` | `false` | `true` behind HTTPS |
-| Timezone | `TZ` | `Europe/Vienna` | |
-| Generic Timezone | `GENERIC_TIMEZONE` | `Europe/Vienna` | Schedule/Cron triggers |
-| Task Runners | `N8N_RUNNERS_ENABLED` | `true` | |
-| Prune Executions | `EXECUTIONS_DATA_PRUNE` | `true` | |
+| Encryption Key | `N8N_ENCRYPTION_KEY` | auto | `openssl rand -hex 32`, then back it up |
+| Secure Cookie | `N8N_SECURE_COOKIE` | `false` | **dropdown** — `true` behind HTTPS |
+| Timezone | `TZ` | `Europe/Vienna` | **dropdown** — full IANA list |
+| Generic Timezone | `GENERIC_TIMEZONE` | `Europe/Vienna` | **dropdown** — Schedule/Cron triggers |
+| Task Runners | `N8N_RUNNERS_ENABLED` | `true` | **dropdown** |
+| Prune Executions | `EXECUTIONS_DATA_PRUNE` | `true` | **dropdown** |
 | Execution Max Age | `EXECUTIONS_DATA_MAX_AGE` | `336` | hours (14 days) |
-| Binary Data Mode | `N8N_DEFAULT_BINARY_DATA_MODE` | `filesystem` | |
-| Telemetry | `N8N_DIAGNOSTICS_ENABLED` | `false` | |
-| Webhook URL | `WEBHOOK_URL` | — | public URL behind a proxy |
-| Host | `N8N_HOST` | — | public hostname behind a proxy |
-| Protocol | `N8N_PROTOCOL` | `http` | |
+| Binary Data Mode | `N8N_DEFAULT_BINARY_DATA_MODE` | `filesystem` | **dropdown** — `filesystem` or `default` |
+| Telemetry | `N8N_DIAGNOSTICS_ENABLED` | `false` | **dropdown** |
+| Webhook URL | `WEBHOOK_URL` | `https://n8n.mydomain.tld/` | replace with your domain, or clear |
+| Host | `N8N_HOST` | `n8n.mydomain.tld` | replace with your domain, or clear |
+| Protocol | `N8N_PROTOCOL` | `http` | **dropdown** — `http` or `https` |
 
 Need a variable that isn't listed (e.g. `N8N_PROXY_HOPS`, queue mode)? Use Unraid's
 **Add another Path, Port, Variable…** to add any n8n environment variable.
@@ -167,11 +191,12 @@ Need a variable that isn't listed (e.g. `N8N_PROXY_HOPS`, queue mode)? Use Unrai
 
 ## 7. Reverse proxy & HTTPS
 
-Behind SWAG / Nginx Proxy Manager / Traefik:
+Behind SWAG / Nginx Proxy Manager / Traefik (the **Host** and **Webhook URL** fields are
+pre-filled with the `n8n.mydomain.tld` placeholder — swap in your real domain):
 
-- Set **Host** = `n8n.example.com`, **Webhook URL** = `https://n8n.example.com/`.
-- Set **Secure Cookie** = `true` (you're on HTTPS now).
-- Keep **Protocol** = `http` and let the proxy terminate TLS; forward the standard
+- **Host** = `n8n.mydomain.tld`, **Webhook URL** = `https://n8n.mydomain.tld/`.
+- **Secure Cookie** = `true` (dropdown — you're on HTTPS now).
+- Keep **Protocol** = `http` (dropdown) and let the proxy terminate TLS; forward the standard
   `X-Forwarded-*` headers. If n8n sees the wrong client IP, add `N8N_PROXY_HOPS=1`.
 
 <br>
@@ -206,8 +231,9 @@ behind HTTPS and set it back to `true`.
 
 <details><summary><b>Container won't start / EACCES / permission denied</b></summary>
 
-The AppData folder isn't writable by UID 1000. Run
-`chown -R 1000:1000 /mnt/user/appdata/n8n` (see [Permissions](#5-permissions-important)).
+The AppData folder doesn't exist yet or isn't writable by UID 1000. Run
+`mkdir -p /mnt/user/appdata/n8n/files && chown -R 1000:1000 /mnt/user/appdata/n8n`
+(see [Permissions](#5-permissions-important)).
 </details>
 
 <details><summary><b>Database connection errors (ECONNREFUSED / authentication failed)</b></summary>
@@ -218,7 +244,7 @@ server is reachable from the n8n container. See [PostgreSQL setup](#3-postgresql
 
 <details><summary><b>Webhooks return the wrong URL</b></summary>
 
-Set **Webhook URL** to your public base URL (e.g. `https://n8n.example.com/`).
+Set **Webhook URL** to your public base URL (e.g. `https://n8n.mydomain.tld/`).
 </details>
 
 <br>
