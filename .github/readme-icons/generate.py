@@ -19,7 +19,7 @@ ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 
 # README-card icons to generate (Krusader's CA icon doubles as the radius reference)
 APPS = ["featherdrop", "jdownloader", "krusader", "matrix", "openhands",
-        "n8n", "standardnotes-server", "standardnotes-webui"]
+        "n8n", "shiplog", "standardnotes-server", "standardnotes-webui"]
 # logos to crop and centre with a small white margin (Standard Notes)
 MARGIN_LOGOS = {"standardnotes-server", "standardnotes-webui"}
 LOGO_FILL = 0.82  # fraction of the tile the cropped logo fills (rest = white margin)
