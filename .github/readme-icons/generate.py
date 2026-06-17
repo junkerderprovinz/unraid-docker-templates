@@ -18,7 +18,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 
 # README-card icons to generate (Krusader's CA icon doubles as the radius reference)
-APPS = ["featherdrop", "jdownloader", "krusader", "matrix", "openhands",
+APPS = ["bombvault", "featherdrop", "jdownloader", "krusader", "matrix", "openhands",
         "n8n", "shiplog", "standardnotes-server", "standardnotes-webui"]
 # logos to crop and centre with a small white margin (Standard Notes)
 MARGIN_LOGOS = {"standardnotes-server", "standardnotes-webui"}

@@ -4,14 +4,14 @@
 
 <p align="center">
   <a href="https://github.com/junkerderprovinz/unraid-docker-templates/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-docker-templates/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
-  <a href="#templates"><img src="https://img.shields.io/badge/Templates-10-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Templates" height="36"></a>&nbsp;
+  <a href="#templates"><img src="https://img.shields.io/badge/Templates-11-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Templates" height="36"></a>&nbsp;
   <a href="https://github.com/junkerderprovinz/unraid-docker-templates/commits/main"><img src="https://img.shields.io/github/last-commit/junkerderprovinz/unraid-docker-templates?branch=main&style=for-the-badge&logo=git&logoColor=white&label=Updated" alt="Last commit" height="36"></a>&nbsp;
   <a href="https://unraid.net"><img src="https://img.shields.io/badge/Unraid-Templates-f15a2c?style=for-the-badge&logo=unraid&logoColor=white" alt="Unraid" height="36"></a>&nbsp;
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" height="36"></a>
 </p>
 
 <p align="center">
-Unraid <b>Community Applications</b> templates for all of junkerderprovinz's containers — both <b>own-image</b> apps (Krusader, JDownloader, Matrix, featherdrop, ShipLog) and <b>upstream-image</b> wrappers (OpenHands, Standard Notes, n8n). One repository, one CA feed; each app's image and full source live in its own per-app repository.
+Unraid <b>Community Applications</b> templates for all of junkerderprovinz's containers — both <b>own-image</b> apps (Krusader, JDownloader, Matrix, featherdrop, ShipLog, BombVault) and <b>upstream-image</b> wrappers (OpenHands, Standard Notes, n8n). One repository, one CA feed; each app's image and full source live in its own per-app repository.
 </p>
 
 
@@ -63,6 +63,15 @@ Feather-light, login-free, end-to-end encrypted self-hosted file sharing — dro
 #### ShipLog
 
 Read-only update advisor — what changes between your running image and the newest one, and how risky, before you press update.
+
+<br clear="all">
+
+<img src=".github/readme-icons/bombvault.png" width="84" align="left" alt="BombVault">
+<a href="https://github.com/junkerderprovinz/bombvault#readme"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Repository%20%26%20ReadMe-f6f8fa?style=for-the-badge&logo=github&logoColor=181717"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-181717?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></picture></a>
+
+#### BombVault
+
+Backup & full disaster recovery for Docker containers, KVM/libvirt VMs and the Unraid flash — one-click backup and automatic re-install, powered by restic.
 
 <br clear="all">
 
