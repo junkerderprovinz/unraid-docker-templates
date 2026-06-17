@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Containers>
+  <Plugin>True</Plugin>
+  <PluginURL>https://raw.githubusercontent.com/junkerderprovinz/smokesignal/main/plugin/smokesignal.plg</PluginURL>
+  <PluginAuthor>junkerderprovinz</PluginAuthor>
+  <Beta>False</Beta>
+  <Category>Tools: System:</Category>
+  <Name>SmokeSignal</Name>
+  <Description>Catches the smoke before the reboot catches fire.&#xD;
+&#xD;
+SmokeSignal checks, BEFORE you reboot, whether your server will come back up clean - and gives one verdict: GO / CAUTION / NO-GO, with the exact findings. Advisory only: it reads the host and reports, it never changes anything.&#xD;
+&#xD;
+It catches the reboot landmines that are detectable from the running system: an unclean array or a disabled/invalid disk, a parity/sync/rebuild/clear or mover in progress, a container mounting a host runtime directory or a stuck docker.img/libvirt.img loop, a non-writable flash, low free space, recent kernel/IO errors, running VMs, stopped core services, and SMART health (status + attributes + temperature).&#xD;
+&#xD;
+Adds a button next to Reboot on the Main tab and an icon on the Dashboard. Follows your Unraid light/dark theme and language (English + German, English fallback).</Description>
+  <Support>https://github.com/junkerderprovinz/smokesignal/issues</Support>
+  <Project>https://github.com/junkerderprovinz/smokesignal</Project>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/smokesignal/main/.github/assets/icon.png</Icon>
+  <DonateText>Buy me a coffee</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+</Containers>
