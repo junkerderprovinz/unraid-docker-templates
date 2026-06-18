@@ -12,8 +12,8 @@ SmokeSignal checks, BEFORE you reboot, whether your server will come back up cle
 &#xD;
 It catches the reboot landmines that are detectable from the running system: an unclean array or a disabled/invalid disk, a parity/sync/rebuild/clear or mover in progress, a container mounting a host runtime directory or a stuck docker.img/libvirt.img loop, a non-writable flash, low free space, recent kernel/IO errors, running VMs, stopped core services, and SMART health (status + attributes + temperature).&#xD;
 &#xD;
-Adds a button next to Reboot on the Main tab and an icon on the Dashboard. Follows your Unraid light/dark theme and language (English + German, English fallback).</Description>
-  <Support>https://github.com/junkerderprovinz/smokesignal/issues</Support>
+Adds a button next to Reboot on the Main tab. Follows your Unraid light/dark theme and language (English + German, English fallback).</Description>
+  <Support>https://forums.unraid.net/topic/199508-support-junkerderprovinz-smokesignal/</Support>
   <Project>https://github.com/junkerderprovinz/smokesignal</Project>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/smokesignal/main/.github/assets/icon.png</Icon>
   <DonateText>Buy me a coffee</DonateText>
