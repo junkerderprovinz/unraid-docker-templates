@@ -105,8 +105,20 @@
           Type="Variable" Display="always" Required="true" Mask="false">no</Config>
 
   <Config Name="Enable Federation" Target="ENABLE_FEDERATION" Default="true|false"
-          Description="true = chat with the public Matrix network (requires /.well-known/matrix/* on your proxy, see README). false = private island."
+          Description="true = chat with the public Matrix network. The container now serves /.well-known/matrix/* itself (serve_server_wellknown) as long as https://SERVER_NAME/ is routed to Synapse — no extra proxy rule needed. false = private island."
           Type="Variable" Display="always" Required="true" Mask="false">true</Config>
+
+  <Config Name="Enable Registration" Target="ENABLE_REGISTRATION" Default="false|true"
+          Description="false = accounts created by the admin only (recommended). true = open self-service signup WITHOUT verification (shows Element's Create Account button) — only enable behind a CAPTCHA or on a trusted network, or you will get spam signups."
+          Type="Variable" Display="always" Required="true" Mask="false">false</Config>
+
+  <Config Name="TURN Domain" Target="TURN_DOMAIN" Default=""
+          Description="Optional. Public hostname clients reach TURN (voice/video) at. Leave empty to use SERVER_NAME; set a dedicated subdomain (e.g. turn.yourdomain.tld) to route TURN around a reverse proxy."
+          Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="TURN Port" Target="TURN_PORT" Default="3478"
+          Description="Optional. Public TURN port advertised to clients (default 3478). Change only if you remapped the published TURN port."
+          Type="Variable" Display="advanced" Required="false" Mask="false">3478</Config>
 
   <Config Name="PostgreSQL Host" Target="POSTGRES_HOST" Default="192.168.1.10"
           Description="IP of your PostgreSQL server (e.g. Unraid host IP). 192.168.1.10 is a placeholder — replace it with your server's IP. IP+port is more reliable than container names."
