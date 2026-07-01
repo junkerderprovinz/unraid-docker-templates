@@ -22,46 +22,41 @@ Unraid <b>Community Applications</b> templates for all of junkerderprovinz's con
 *Built and published by junkerderprovinz — full docs live in each app's own repository.*
 
 <img src=".github/readme-icons/krusader.png" width="84" align="left" alt="Krusader">
-<div align="right"><a href="https://github.com/junkerderprovinz/krusader#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
+<a href="https://github.com/junkerderprovinz/krusader#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
-#### Krusader
-
+**Krusader**<br>
 Twin-pane KDE file manager with a native dark theme, on a fast KasmVNC web desktop (Kate, krename, RAR).
 
 <br clear="all">
 
 <img src=".github/readme-icons/jdownloader.png" width="84" align="left" alt="JDownloader">
-<div align="right"><a href="https://github.com/junkerderprovinz/jdownloader#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
+<a href="https://github.com/junkerderprovinz/jdownloader#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
-#### JDownloader
-
+**JDownloader**<br>
 JDownloader 2 with a complete, sleek dark UI out of the box, on a KasmVNC web desktop.
 
 <br clear="all">
 
 <img src=".github/readme-icons/matrix.png" width="84" align="left" alt="Matrix">
-<div align="right"><a href="https://github.com/junkerderprovinz/matrix#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
+<a href="https://github.com/junkerderprovinz/matrix#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
-#### Matrix
-
+**Matrix**<br>
 All-in-one Matrix homeserver: Synapse + coturn + Element Web + Synapse-Admin in one container.
 
 <br clear="all">
 
 <img src=".github/readme-icons/featherdrop.png" width="84" align="left" alt="featherdrop">
-<div align="right"><a href="https://github.com/junkerderprovinz/featherdrop#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
+<a href="https://github.com/junkerderprovinz/featherdrop#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
-#### featherdrop
-
+**featherdrop**<br>
 Your own private WeTransfer — feather-light, login-free, end-to-end encrypted self-hosted file sharing. Drop a file, set an expiry, share a link.
 
 <br clear="all">
 
 <img src=".github/readme-icons/bombvault.png" width="84" align="left" alt="BombVault">
-<div align="right"><a href="https://github.com/junkerderprovinz/bombvault#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
+<a href="https://github.com/junkerderprovinz/bombvault#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
-#### BombVault
-
+**BombVault**<br>
 Backup and full disaster recovery for Docker containers, VMs and the flash USB. One-click backup and automatic re-install, powered by restic.
 
 <br clear="all">
@@ -71,37 +66,33 @@ Backup and full disaster recovery for Docker containers, VMs and the flash USB. 
 *Templates for third-party images (no custom build) — full docs in each app's folder below.*
 
 <img src=".github/readme-icons/openhands.png" width="84" align="left" alt="OpenHands">
-<div align="right"><a href="openhands/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
+<a href="openhands/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
-#### OpenHands
-
+**OpenHands**<br>
 Open-source AI software-development agent, pre-wired for a local Ollama model.
 
 <br clear="all">
 
 <img src=".github/readme-icons/standardnotes-server.png" width="84" align="left" alt="Standard Notes Server">
-<div align="right"><a href="standardnotes-server/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
+<a href="standardnotes-server/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
-#### Standard Notes Server
-
+**Standard Notes Server**<br>
 Self-hosted Standard Notes sync server (external MariaDB + Redis). Includes an optional **LocalStack** template for S3-compatible file storage.
 
 <br clear="all">
 
 <img src=".github/readme-icons/standardnotes-webui.png" width="84" align="left" alt="Standard Notes Web UI">
-<div align="right"><a href="standardnotes-webui/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
+<a href="standardnotes-webui/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
-#### Standard Notes Web UI
-
+**Standard Notes Web UI**<br>
 The official Standard Notes web client.
 
 <br clear="all">
 
 <img src=".github/readme-icons/n8n.png" width="84" align="left" alt="n8n">
-<div align="right"><a href="n8n/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
+<a href="n8n/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
-#### n8n
-
+**n8n**<br>
 Workflow automation — connect 400+ apps and APIs. PostgreSQL by default, every option exposed in the template form.
 
 <br clear="all">
@@ -112,19 +103,17 @@ Workflow automation — connect 400+ apps and APIs. PostgreSQL by default, every
 *Unraid **plugins** (not containers) — listed on CA, installed from the Plugins tab via a `.plg` URL.*
 
 <img src=".github/readme-icons/shiplog.png" width="84" align="left" alt="ShipLog">
-<div align="right"><a href="https://github.com/junkerderprovinz/shiplog#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
+<a href="https://github.com/junkerderprovinz/shiplog#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
-#### ShipLog
-
+**ShipLog**<br>
 Read-only update advisor in Unraid's native Docker tab — a per-container changelog bubble: what changes between your running image and the newest, and how risky, before you press update. Remembers the running version (real "1.7 → 1.8"); optional Ollama summaries + Matrix alerts.
 
 <br clear="all">
 
 <img src=".github/readme-icons/smokesignal.png" width="84" align="left" alt="SmokeSignal">
-<div align="right"><a href="https://github.com/junkerderprovinz/smokesignal#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
+<a href="https://github.com/junkerderprovinz/smokesignal#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
-#### SmokeSignal
-
+**SmokeSignal**<br>
 Pre-reboot health check — a single **GO / CAUTION / NO-GO** verdict before you reboot, so you never reboot into a known landmine. Advisory only.
 
 <br clear="all">
