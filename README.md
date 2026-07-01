@@ -124,7 +124,7 @@ On Unraid: open **Apps** (Community Applications) and search for the app name �
 To add a single template by hand, paste its raw `*.xml` URL into **Add Container → Template**, e.g.
 `https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/openhands/openhands.xml`
 
-Own-image apps link to their dedicated repository's README; wrapper apps keep their README in their folder here.
+Containers link to their dedicated repository's README; template (upstream-image) apps keep their README in their folder here.
 
 **Plugins** are not part of the CA template feed — install them from **Plugins → Install Plugin** using the plugin's raw `.plg` URL, e.g.
 `https://raw.githubusercontent.com/junkerderprovinz/smokesignal/main/plugin/smokesignal.plg`
