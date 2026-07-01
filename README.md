@@ -15,11 +15,9 @@ Unraid <b>Community Applications</b> templates for all of junkerderprovinz's con
 </p>
 
 
-## Templates
+## Containers
 
-### Own-image apps
-
-*Built and published by junkerderprovinz — full docs live in each app's own repository.*
+*Own images built and published by junkerderprovinz — full docs live in each app's own repository.*
 
 <img src=".github/readme-icons/krusader.png" width="84" align="left" alt="Krusader">
 <a href="https://github.com/junkerderprovinz/krusader#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
@@ -61,9 +59,9 @@ Backup and full disaster recovery for Docker containers, VMs and the flash USB. 
 
 <br clear="all">
 
-### Upstream-image wrappers
+## Templates
 
-*Templates for third-party images (no custom build) — full docs in each app's folder below.*
+*Templates for third-party upstream images (no custom build) — full docs in each app's folder below.*
 
 <img src=".github/readme-icons/openhands.png" width="84" align="left" alt="OpenHands">
 <a href="openhands/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
