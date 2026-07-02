@@ -126,5 +126,5 @@ To add a single template by hand, paste its raw `*.xml` URL into **Add Container
 
 Containers link to their dedicated repository's README; template (upstream-image) apps keep their README in their folder here.
 
-**Plugins** are not part of the CA template feed — install them from **Plugins → Install Plugin** using the plugin's raw `.plg` URL, e.g.
+**Plugins** (ShipLog, SmokeSignal) are published from this repository too — CA lists them the same way as containers (a template with `<Plugin>True</Plugin>` + `<PluginURL>`), so search for them in **Apps**. You can also install a plugin directly from **Plugins → Install Plugin** with its raw `.plg` URL, e.g.
 `https://raw.githubusercontent.com/junkerderprovinz/smokesignal/main/plugin/smokesignal.plg`
