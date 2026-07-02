@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CommunityApplications>
   <Profile>
-    junkerderprovinz Unraid templates — Community Applications templates for all of
-    junkerderprovinz's containers: own-image apps (Krusader, JDownloader, Matrix,
-    featherdrop) and upstream-image wrappers (OpenHands, Standard Notes Server +
-    LocalStack, Standard Notes Web UI, n8n). Each app folder has its own template,
-    icon and README; the images and full source live in their per-app repositories.
+    junkerderprovinz Unraid templates. Community Applications templates for
+    junkerderprovinz's self-hosted apps: own-image containers (BombVault,
+    featherdrop, JDownloader, Krusader, Matrix), upstream-image wrappers
+    (OpenHands, Standard Notes Server, Standard Notes Web UI, n8n), and the
+    ShipLog and SmokeSignal plugins. Each app folder has its own template, icon
+    and README; images and full source live in their per-app repositories.
     Maintained by junkerderprovinz; support via the per-app Unraid forum threads.
   </Profile>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/.github/assets/icon.png</Icon>
